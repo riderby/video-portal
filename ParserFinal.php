@@ -12,13 +12,13 @@ mysql_select_db($mysql_database, $bd) or die("Error");
 $reader = new XMLReader();
 
 if (!$reader->open("content.xml"))  { // xml size 600MB+
-    die("Ошибка открытия файла '.content'");
+    die("ГЋГёГЁГЎГЄГ  Г®ГІГЄГ°Г»ГІГЁГї ГґГ Г©Г«Г  '.content'");
 }
 
 while ($reader->read()) {
 
 
-    //парсер таблицы actors
+    // actors
     if ($reader->nodeType == XMLReader::ELEMENT && $reader->name == 'actors_list') {
 
         while ($reader->nodeType !== XMLReader::END_ELEMENT) {
@@ -37,7 +37,7 @@ while ($reader->read()) {
             }
         }
     }
-    //работает
+
 
 
     $sql = mysql_query("SELECT count(id) from actors");
@@ -45,7 +45,7 @@ while ($reader->read()) {
     $totalActors = $row[0];
 
 
-    //парсер таблицы category
+    //category
     if ($reader->nodeType == XMLReader::ELEMENT && $reader->name == 'category') {
 
         $categoryId = $reader->getAttribute('id');
@@ -54,10 +54,10 @@ while ($reader->read()) {
         mysql_query($sql);
 
     }
-    //работает
+    
 
 
-    //парсер таблицы content
+    // content
     if ($reader->nodeType == XMLReader::ELEMENT && $reader->name == 'content') {
 
         $contentId = $reader->getAttribute('id');
@@ -80,7 +80,7 @@ while ($reader->read()) {
                 '$contentScore' , '$contentDescription', '$contentYear')";
         mysql_query($sql);
     }
-    //работает
+ 
 
 
 
@@ -145,7 +145,7 @@ while ($reader->read()) {
     }
 
 
-    //парсер таблицы content_persons
+    //content_persons
     if ($reader->nodeType == XMLReader::ELEMENT && $reader->name == 'content') {
 
         $contentId = $reader->getAttribute('id');
@@ -172,12 +172,12 @@ while ($reader->read()) {
         }
 
     }
-    //работает
+ 
 
     //content deirectors
 
 
-    //парсер content_director
+    // content_director
     if ($reader->nodeType == XMLReader::ELEMENT && $reader->name == 'content') {
 
         $contentId = $reader->getAttribute('id') . "\n";
@@ -200,10 +200,10 @@ while ($reader->read()) {
 
 
     }
-    //работает
 
 
-    //парсер таблицы content_directors
+
+    // content_directors
 
     if ($reader->nodeType == XMLReader::ELEMENT && $reader->name == 'content') {
 
@@ -234,7 +234,7 @@ while ($reader->read()) {
     }
 
 
-    //парсер таблицы country
+    //country
     if ($reader->nodeType == XMLReader::ELEMENT && $reader->name == 'country') {
 
         $countryId = $reader->getAttribute('id');
@@ -245,10 +245,10 @@ while ($reader->read()) {
                     VALUES ('$countryId', '$countryName', '$countryCode')";
         mysql_query($sql);
     }
-    //работает
+ 
 
 
-    //парсер таблицы directors
+    //directors
     if ($reader->nodeType == XMLReader::ELEMENT && $reader->name == 'directors_list') {
 
         while ($reader->nodeType !== XMLReader::END_ELEMENT) {
@@ -264,7 +264,7 @@ while ($reader->read()) {
 
             }
         }
-        //работает
+  
     }
 
 
@@ -273,7 +273,7 @@ while ($reader->read()) {
     $totalDirector = $row[0];
 
 
-    //парсер таблицы genres
+    // genres
     if ($reader->nodeType == XMLReader::ELEMENT && $reader->name == 'type') {
 
         $genresId = $reader->getAttribute('id');
@@ -285,14 +285,14 @@ while ($reader->read()) {
         mysql_query($sql);
 
     }
-    //работает
+ 
 
     $sql = mysql_query("SELECT count(id) from genres");
     $row = mysql_fetch_row($sql);
     $totalGenres = $row[0];
 
 
-    //парсер таблицы screenshot
+    //screenshot
     if ($reader->nodeType == XMLReader::ELEMENT && $reader->name == 'screenshots') {
 
         $episodeId = $reader->getAttribute('episode_id');
@@ -309,10 +309,10 @@ while ($reader->read()) {
                     VALUES ('$episodeId', '$screenUrl', '$screenSize')";
         mysql_query($sql);
     }
-    //работает
+ 
 
 
-    //парсер таблицы episode
+    //episode
     if ($reader->nodeType == XMLReader::ELEMENT && $reader->name == 'episode') {
 
         $episodeId = $reader->getAttribute('id');
@@ -337,15 +337,14 @@ while ($reader->read()) {
 
         mysql_query($sql);
     }
-    //работает
+
 
 
 }
 
 
-echo "Insert was directors: " . $totalDirector . " items";
-echo "<br>";
-echo "Insert was genres: " . $totalGenres . " items";
+echo "Insert was directors: " . $totalDirector . " items" . PHP_EOL;
+echo "Insert was genres: " . $totalGenres . " items" . PHP_EOL;
 
 
 $reader->close();
