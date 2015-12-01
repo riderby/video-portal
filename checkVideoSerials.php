@@ -1,8 +1,8 @@
 <?php
 
 
-$mysqli_hostname = "localhost";
-$mysqli_user = "root";
+$mysqli_hostname = "";
+$mysqli_user = "";
 $mysqli_password = "";
 $mysqli_database = "stalker_db";
 $conn = new mysqli($mysqli_hostname, $mysqli_user, $mysqli_password, $mysqli_database);
